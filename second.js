@@ -1,5 +1,7 @@
 
-export const isArray = ele => {
+// If Array consists of the Integers only
+
+const isArray = ele => {
   return ele && Array.isArray(ele) && ele instanceof Array
 };
 
@@ -27,11 +29,15 @@ const flatDeepArguments = data => {
 
 const removeDuplicates = (...args) => {
   let flattenedArray = flatDeepArguments(args);
+  let sortedArray = flattenedArray.sort(
+    (a, b) => (a - b)
+  );
   let uniqueArray = [];
-  flattenedArray.map(ele => {
-    // Use array indexOf in case of old version of Node
-    if (!uniqueArray.includes(ele)) {
+  let temp = null;
+  sortedArray.forEach(ele => {
+    if (ele !== temp) {
       uniqueArray.push(ele);
+      temp = ele;
     }
   });
   return [...uniqueArray];
