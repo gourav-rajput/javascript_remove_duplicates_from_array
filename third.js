@@ -27,12 +27,5 @@ const flatDeepArguments = data => {
 
 const removeDuplicates = (...args) => {
   let flattenedArray = flatDeepArguments(args);
-  let uniqueArray = [];
-  flattenedArray.map(ele => {
-    // Use array indexOf in case of old version of Node
-    if (!uniqueArray.includes(ele)) {
-      uniqueArray.push(ele);
-    }
-  });
-  return [...uniqueArray];
+  return [...new Set(flattenedArray)];
 };
